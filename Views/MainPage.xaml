@@ -1,0 +1,156 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+
+<ContentPage
+    xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+    xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+    xmlns:converter="clr-namespace:EventsApp.Services"
+    x:Class="EventsApp.Views.MainPage"
+    Title="Events">
+    
+    <Grid
+        RowDefinitions="Auto,*"
+        ColumnDefinitions="*,*,*"
+        Padding="15"
+        ColumnSpacing="10">
+
+        <SearchBar
+            Grid.Row="0"
+            Grid.Column="0"
+            Placeholder="Search events..."
+            Text="{Binding SearchText}"
+            SearchCommand="{Binding SearchCommand}" />
+
+        <SearchBar
+            Grid.Row="0"
+            Grid.Column="1"
+            Placeholder="Enter state code (NY, CA, TX...)"
+            Text="{Binding StateSearchText}"
+            SearchCommand="{Binding FilterStateCommand}" />
+        
+        <SearchBar
+            Grid.Row="0"
+            Grid.Column="2"
+            Placeholder="Enter city..."
+            Text="{Binding CitySearchText}"
+            SearchCommand="{Binding FilterCityCommand}" />
+
+        <CollectionView
+            Grid.Row="1"
+            Grid.Column="0"
+            Grid.ColumnSpan="3"
+            ItemsSource="{Binding Events}"
+            SelectionChangedCommand="{Binding EventSelectedCommand}"
+            SelectionChangedCommandParameter="{Binding SelectedItem, Source={RelativeSource Self}}"
+            SelectionMode="Single"
+            Margin="15">
+
+            <CollectionView.ItemsLayout>
+                <GridItemsLayout
+                    Orientation="Vertical"
+                    Span="3"
+                    HorizontalItemSpacing="10"
+                    VerticalItemSpacing="10" />
+            </CollectionView.ItemsLayout>
+
+            <CollectionView.ItemTemplate>
+                <DataTemplate>
+
+                    <Border
+                        Stroke="#DDDDDD"
+                        StrokeThickness="1"
+                        BackgroundColor="White"
+                        Padding="0">
+
+                        <Border.StrokeShape>
+                            <RoundRectangle CornerRadius="6" />
+                        </Border.StrokeShape>
+
+                        <Grid RowDefinitions="160,*">
+                            
+                            <Image
+                                Grid.Row="0"
+                                Source="{Binding ImageUrl}"
+                                Aspect="AspectFill"
+                                HeightRequest="160" />
+                            
+                            <Label
+                                Grid.Row="0"
+                                Text="{Binding IsFavorite,Converter={converter:FavoriteIconConverter}}"
+                                FontSize="30"
+                                TextColor="Red"
+                                HorizontalOptions="End"
+                                VerticalOptions="Start"
+                                Margin="10" />
+                            
+                            <VerticalStackLayout
+                                Grid.Row="1"
+                                Padding="15"
+                                Spacing="6">
+                                
+                                <Label
+                                    Text="{Binding Name}"
+                                    FontSize="14"
+                                    FontAttributes="Bold"
+                                    TextColor="#333333" />
+                                
+                                <HorizontalStackLayout Spacing="6">
+
+                                    <Label
+                                        Text="📅"
+                                        FontSize="16" />
+
+                                    <Label
+                                        Text="{Binding Date}"
+                                        FontSize="14"
+                                        TextColor="#444444" />
+
+                                    <Label
+                                        Text="{Binding Time}"
+                                        FontSize="14"
+                                        TextColor="#444444" />
+
+                                </HorizontalStackLayout>
+                                
+                                <HorizontalStackLayout Spacing="6">
+
+                                    <Label
+                                        Text="📍"
+                                        FontSize="16" />
+
+                                    <Label
+                                        Text="{Binding Venue}"
+                                        FontSize="14"
+                                        TextColor="#444444" />
+
+                                </HorizontalStackLayout>
+                                
+                                <HorizontalStackLayout
+                                    Spacing="4"
+                                    Margin="22,0,0,0">
+
+                                    <Label
+                                        Text="{Binding City}"
+                                        FontSize="13"
+                                        TextColor="#666666" />
+
+                                    <Label
+                                        Text="{Binding State}"
+                                        FontSize="13"
+                                        TextColor="#666666" />
+
+                                </HorizontalStackLayout>
+
+                            </VerticalStackLayout>
+
+                        </Grid>
+
+                    </Border>
+
+                </DataTemplate>
+            </CollectionView.ItemTemplate>
+
+        </CollectionView>
+
+    </Grid>
+
+</ContentPage>

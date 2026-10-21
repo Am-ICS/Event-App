@@ -1,0 +1,53 @@
+<?xml version="1.0" encoding="utf-8" ?>
+
+<ContentPage
+    xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+    xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+    x:Class="EventsApp.Views.EventDetailPage"
+    Title="Event Details">
+
+    <ScrollView>
+        <VerticalStackLayout
+            Padding="20"
+            Spacing="15">
+
+            <Image
+                Source="{Binding ImageUrl}"
+                HeightRequest="250"
+                Aspect="AspectFill" />
+
+            <Label
+                Text="{Binding Name}"
+                FontSize="26"
+                FontAttributes="Bold" />
+
+            <Label
+                Text="{Binding Date}"
+                FontSize="18" />
+
+            <Label
+                Text="{Binding Time}"
+                FontSize="18" />
+
+            <Label
+                Text="{Binding Venue}"
+                FontSize="18"
+                FontAttributes="Bold" />
+
+            <HorizontalStackLayout Spacing="5">
+
+                <Label
+                    Text="{Binding City}"
+                    FontSize="16" />
+
+                <Label
+                    Text="{Binding State}"
+                    FontSize="16" />
+
+            </HorizontalStackLayout>
+            
+
+        </VerticalStackLayout>
+    </ScrollView>
+
+</ContentPage>
