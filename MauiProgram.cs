@@ -39,7 +39,7 @@ public static class MauiProgram
 		builder.Services.AddSingleton<ITicketmasterService>(services =>
 		{
 			var client = services.GetRequiredService<HttpClient>();
-			string apiKey = "DtP2uAuSqUgS92AjsKilfzQXoIdfhjF4";
+			string apiKey = "KEY";
 
 			return new TicketmasterService(client, apiKey);
 		});
