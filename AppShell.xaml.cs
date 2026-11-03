@@ -1,4 +1,4 @@
-﻿namespace EventsApp;
+﻿namespace TodoExplorer;
 
 public partial class AppShell : Shell
 {
